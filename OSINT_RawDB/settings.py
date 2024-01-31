@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TOKEN = '648a1dd32gd5f6z8s46599fx62514'
 
 # Application definition
 

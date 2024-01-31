@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/add_articles', main_db.views.add_articles),
     path('api/get_articles', main_db.views.get_articles),
+    path('api/delete_article/<int:article_id>', main_db.views.delete_article),
+    path('api/update_article/<int:article_id>', main_db.views.update_article),
 ]
