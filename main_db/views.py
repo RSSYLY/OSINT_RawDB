@@ -21,9 +21,9 @@ def add_articles(request):
         'msg': 'Add articles successfully.'
     }
     try:
-        contents = request.data['contents']
+        contents = request.data['content']
         for content in contents:
-            date = request.data['date']
+            date = request.data['Date']
             content = json.dumps(content)
             RawArticlesData.objects.create(date=date, content=content)
         return HttpResponse(json.dumps(ret_data), content_type="application/json", status=SUCCESS_CREATED_CODE)
