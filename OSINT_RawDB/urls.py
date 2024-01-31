@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 import main_db.views
 
 urlpatterns = [
@@ -25,4 +26,6 @@ urlpatterns = [
     path('api/get_articles', main_db.views.get_articles),
     path('api/delete_article/<int:article_id>', main_db.views.delete_article),
     path('api/update_article/<int:article_id>', main_db.views.update_article),
-]
+    path('api/update_word_cloud/<int:article_id>', main_db.views.update_word_cloud),
+    path('api/get_word_cloud/<int:article_id>', main_db.views.get_word_cloud),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
