@@ -28,4 +28,5 @@ urlpatterns = [
     path('api/update_article/<int:article_id>', main_db.views.update_article),
     path('api/update_word_cloud/<int:article_id>', main_db.views.update_word_cloud),
     path('api/get_word_cloud/<int:article_id>', main_db.views.get_word_cloud),
+    path('api/get_articles_without_word_cloud', main_db.views.get_articles_without_word_cloud),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -12,6 +12,6 @@ def token_required(view_func):
             token = auth_header[6:]  # Remove 'Bearer ' prefix
             if token == settings.TOKEN:
                 return view_func(request, *args, **kwargs)
-        return JsonResponse({'error': 'Invalid token', 'code': FAIL_UNAUTHORIZED_CODE}, status=FAIL_UNAUTHORIZED_CODE)
+        return JsonResponse({'msg': 'Invalid token', 'code': FAIL_UNAUTHORIZED_CODE}, status=FAIL_UNAUTHORIZED_CODE)
 
     return _wrapped_view_func

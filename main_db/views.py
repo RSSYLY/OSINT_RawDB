@@ -56,6 +56,30 @@ def get_articles(request):
         return HttpResponse(json.dumps(ret_data), content_type="application/json", status=SERVER_FAIL_CODE)
 
 
+# 获取没有词云图片的文章数据
+@api_view(['GET'])
+@token_required
+def get_articles_without_word_cloud(request):
+    ret_data = {
+        'code': SUCCESS_CODE,
+        'msg': 'Get articles successfully.',
+        'data': []
+    }
+    try:
+        articles = RawArticlesData.objects.filter(word_cloud_img__isnull=True)
+        for article in articles:
+            ret_data['data'].append({
+                'id': article.id,
+                'date': article.date.strftime('%Y-%m-%d %H:%M:%S'),
+                'content': json.loads(article.content)
+            })
+        return HttpResponse(json.dumps(ret_data), content_type="application/json", status=SUCCESS_CODE)
+    except Exception as e:
+        ret_data['code'] = SERVER_FAIL_CODE
+        ret_data['msg'] = str(e)
+        return HttpResponse(json.dumps(ret_data), content_type="application/json", status=SERVER_FAIL_CODE)
+
+
 # 通过id删除指定文章
 @api_view(['GET'])
 @token_required
